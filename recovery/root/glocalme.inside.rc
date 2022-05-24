@@ -1,0 +1,100 @@
+# This file add glocalme inside program script add by wangliang date:2014-05-05
+
+# add by sqh 2016-4-15 
+service start_qxdm /system/bin/sh /system/bin/qxdm_init.sh
+    class main
+    user root
+    oneshot
+
+#uC_MsgRouter  autorun config  add by wei.shu   2014-05-05
+service mosquitto /system/bin/uC_MsgRouter -c /system/etc/mosquitto.conf
+    class main
+    user root
+    oneshot
+#uC_Log  autorun config  add by cheng.huang   2014-10-29
+service uC_Log /system/bin/uC_Log 
+    class main
+    user root
+
+#uC_MainServer, app_socket,  uC_GloServer, autorun config  add by wangliang  2014-05-05
+service mainserver /system/bin/uC_MainServer
+    class main
+    socket rilj stream 660 root radio
+    user root
+
+#service uC_RappSoc /system/bin/uC_RappSoc
+#    class main
+#    user root
+
+#uC_Rild autorun config  add by zhuo.hangen  2014-05-05 
+service uC_Rild /system/bin/uC_Rild
+    class main
+    user root
+
+#Removed by wuz ,20160811
+#service uC_GloServer /system/bin/uC_GloServer
+#    class main
+#    user root
+
+#uC_WebServer  autorun config  add by mc.meng   2014-05-05
+service uC_WebServer /system/bin/uC_WebServer
+    class main
+    user root
+
+service uC_Gnet /system/bin/uC_Gnet
+    class main
+    user root
+
+#uc_netlink added by chenjingbing
+service uc_netlink /system/bin/uc_netlink
+   class main
+   user root
+
+#add by pengchugang, softap_service, wifi up need runing first
+service uC_SoftapService /system/bin/uC_SoftapService
+    class main
+    user root
+
+# add by sqh 2016-5-7
+service crond /system/xbin/crond
+    class main
+    user root
+    oneshot
+
+# add by sqh 2016-5-17
+# auto test function
+service auto_test /system/bin/sh /system/bin/auto_test.sh
+    class main
+    user root
+    oneshot
+
+# add by sqh 2016-5-17
+service uckmsg /system/bin/uckmsg
+    class main
+    user root
+
+#add by luxuelin
+service file_check /system/bin/sh /system/bin/system_file_check.sh
+    class main
+    user root
+    oneshot
+#end
+
+#add by sqh
+service resize_log_file /system/bin/sh /system/bin/resize_log_file.sh
+    class main
+    user root
+    oneshot
+#end
+
+#add by luran
+service logcat_info /system/bin/sh /system/bin/collect_logcat_info.sh
+    class main
+    user root
+    oneshot
+#end
+
+#add by chenjunzuo
+service uC_Counturl /system/bin/uC_Counturl
+    class main
+    user root
